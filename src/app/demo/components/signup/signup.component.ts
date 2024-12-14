@@ -13,7 +13,8 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
             margin-right: 1rem;
             color: var(--primary-color) !important;
         }
-    `]
+    `],
+    providers: [AuthService]
 })
 export class SignupComponent {
 
@@ -25,8 +26,9 @@ export class SignupComponent {
     constructor(public layoutService: LayoutService, private  service : AuthService) {
 
     }
+    userData:any={};
     onsignup(){
-        this.service.signup().subscribe(
+        this.service.signup(this.userData).subscribe(
             (next)=>{
 
             }

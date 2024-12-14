@@ -1,6 +1,6 @@
 <div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden" style="direction: rtl;">
     <div class="flex flex-column align-items-center justify-content-center">
-        <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="Logo" class="mb-5 w-6rem flex-shrink-0">
+        <img src="assets/demo/images/HomePage/touns.jpeg" alt="Sakai logo" class="mb-5 w-6rem flex-shrink-0">
         <div class="text-center mb-3">
             <div class="text-900 text-3xl font-medium">وزارة الداخلية</div>
             <div class="text-600 text-xl font-medium">بوابة الجماعات المحلية</div>
@@ -38,10 +38,10 @@
                             <p-checkbox id="notRobot" [binary]="true" styleClass="mr-2"></p-checkbox>
                             <label for="notRobot">أنا لست برنامج روبوت</label>
                         </div>
-                        
+
                     </div>
 
-                    <button pButton pRipple label="تسجيل حساب" class="w-full p-3 text-xl" [routerLink]="['/']"></button>
+                    <button pButton pRipple label="تسجيل حساب" class="w-full p-3 text-xl" (click)="onsignup()"></button>
                     <a class="font-medium no-underline mt-3 text-center cursor-pointer" style="display:block; color: var(--primary-color)">العودة إلى الصفحة الرئيسية</a>
                 </div>
             </div>

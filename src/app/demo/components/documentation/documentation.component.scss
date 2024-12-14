@@ -1,16 +1,71 @@
-@media screen and (max-width: 991px) {
-    .video-container {
-        position: relative;
-        width: 100%;
-        height: 0;
-        padding-bottom: 56.25%;
-    
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-    }
+.sticky-background {
+    /* Fixed-size container (adjust height to your needs) */
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+
+    /* Sticky/fixed background image */
+    background: url('/assets/demo/images/HomePage/proposerIdee.jpg') no-repeat center center;
+    background-size: cover;
+    /* background-attachment: fixed;  <-- If you want a true parallax fixed BG */
+}
+
+.custom-carousel {
+    /* Center the carousel or adjust as needed */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+}
+
+.slide-content {
+    /* This is each slide’s content.
+       Make it fill the container or size as needed. */
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Slight translucent background to ensure text is readable */
+    background-color: transparent;
+}
+
+.voters{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-top:20px;
+    border-radius:20px;
+}
+
+
+.project-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.project-name {
+    flex: 1;
+    font-weight: bold;
+    color: #333;
+}
+
+.vote-options {
+    flex: 3;
+    display: flex;
+    align-items: center;
+}
+
+.submit-button {
+    margin-top: 1rem;
 }
