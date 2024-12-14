@@ -1,0 +1,50 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden" style="direction: rtl;">
+    <div class="flex flex-column align-items-center justify-content-center">
+        <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="Logo" class="mb-5 w-6rem flex-shrink-0">
+        <div class="text-center mb-3">
+            <div class="text-900 text-3xl font-medium">وزارة الداخلية</div>
+            <div class="text-600 text-xl font-medium">بوابة الجماعات المحلية</div>
+        </div>
+        <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+            <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
+                <div class="text-center mb-5">
+                    <div class="text-900 text-3xl font-medium mb-3">إنشاء حساب</div>
+                </div>
+
+                <div>
+                    <label for="fullname" class="block text-900 text-xl font-medium mb-2">الاسم واللقب</label>
+                    <input id="fullname" type="text" placeholder="اكتب الاسم واللقب هنا" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+
+                    <label for="phone" class="block text-900 text-xl font-medium mb-2">رقم الهاتف</label>
+                    <input id="phone" type="text" placeholder="أدخل رقم هاتفك هنا" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+
+                    <label for="idNumber" class="block text-900 text-xl font-medium mb-2">رقم بطاقة التعريف الوطنية</label>
+                    <input id="idNumber" type="text" placeholder="أدخل رقم بطاقة التعريف الوطنية الخاصة بك" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+
+                    <label for="birthDate" class="block text-900 text-xl font-medium mb-2">تاريخ الولادة</label>
+                    <input id="birthDate" type="date" placeholder="mm/dd/yyyy" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+
+                    <label for="email" class="block text-900 text-xl font-medium mb-2">بريد إلكتروني</label>
+                    <input id="email" type="email" placeholder="اكتب بريدك الإلكتروني هنا" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+
+                    <label for="password" class="block text-900 font-medium text-xl mb-2">كلمة السر</label>
+                    <p-password id="password" [(ngModel)]="password" placeholder="     أدخل كلمة المرور الخاصة بك هنا" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
+
+                    <label for="confirmPassword" class="block text-900 font-medium text-xl mb-2">تأكيد كلمة المرور</label>
+                    <p-password id="confirmPassword" [(ngModel)]="confirmPassword" placeholder="    تأكيد كلمة المرور الخاصة بك" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
+
+                    <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                        <div class="flex align-items-center">
+                            <p-checkbox id="notRobot" [binary]="true" styleClass="mr-2"></p-checkbox>
+                            <label for="notRobot">أنا لست برنامج روبوت</label>
+                        </div>
+                        
+                    </div>
+
+                    <button pButton pRipple label="تسجيل حساب" class="w-full p-3 text-xl" [routerLink]="['/']"></button>
+                    <a class="font-medium no-underline mt-3 text-center cursor-pointer" style="display:block; color: var(--primary-color)">العودة إلى الصفحة الرئيسية</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
