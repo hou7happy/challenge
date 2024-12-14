@@ -7,6 +7,12 @@ import { DividerModule } from 'primeng/divider';
 import { ChartModule } from 'primeng/chart';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FormsModule } from '@angular/forms';
+import {BreadcrumbModule} from "primeng/breadcrumb";
+import {ProgressBarModule} from "primeng/progressbar";
 
 @NgModule({
     imports: [
@@ -16,8 +22,14 @@ import { ButtonModule } from 'primeng/button';
         StyleClassModule,
         ChartModule,
         PanelModule,
-        ButtonModule
+        ButtonModule,
+        DropdownModule,
+        InputTextModule,
+        InputTextareaModule,
+        FormsModule,
+        BreadcrumbModule,
+        ProgressBarModule
     ],
     declarations: [LandingComponent]
 })
-export class LandingModule { }
+export class LandingModule {}
