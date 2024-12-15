@@ -1,3 +1,6 @@
+<div *ngIf="this.selectedValue==null" >
+
+
 <p-carousel
     [value]="slides"
     [numVisible]="1"
@@ -14,53 +17,87 @@
             <h4>{{ slide.subtitle }}</h4>
 
             <!-- The button that opens a selection dialog -->
-            <button pButton label="Select Section" icon="pi pi-check"
+            <button pButton label="اختيار" icon="pi pi-check"
                     (click)="onSelectSection(slide)">
             </button>
         </div>
     </ng-template>
 </p-carousel>
 
-<div class="voters" *ngIf="selectedValue === 'voting'">
-    <h3 style="text-align: center; color: #333;">تصويت على المشاريع</h3>
 
-    <!-- List of projects to vote on. For each project, pick green/orange/red. -->
-    <div *ngFor="let project of projects" class="project-row">
-        <div class="project-name">{{ project.title }}</div>
-
-        <!-- Radio buttons to pick vote color -->
-        <div class="vote-options">
-            <!-- Green: "أوافق بشدة" -->
-            <p-radioButton
-                name="vote{{project.id}}"
-                value="green"
-                [(ngModel)]="project.vote">
-            </p-radioButton>
-            <label style="margin-right: 1rem;">أوافق بشدة </label>
-
-            <!-- Orange: "عادي" -->
-            <p-radioButton
-                name="vote{{project.id}}"
-                value="orange"
-                [(ngModel)]="project.vote">
-            </p-radioButton>
-            <label style="margin-right: 1rem;">عادي </label>
-
-            <!-- Red: "لا أوافق" -->
-            <p-radioButton
-                name="vote{{project.id}}"
-                value="red"
-                [(ngModel)]="project.vote">
-            </p-radioButton>
-            <label style="margin-right: 1rem;">لا أوافق </label>
+     <div class="container news-section" style="margin-top: 30px;">
+        <h2 style="text-align: center; color: #333;">آخر الأخبار</h2>
+        <div class="p-grid p-dir-rev" style="gap: 20px; padding: 10px;">
+            <div class="p-col-12 p-md-6 p-lg-4" *ngFor="let newsItem of news">
+                <div class="p-card">
+                    <div class="p-card-title" style="text-align: right;">{{ newsItem.title }}</div>
+                    <div class="p-card-subtitle" style="text-align: right; color: #888;">{{ newsItem.date }}</div>
+                    <div class="p-card-content" style="text-align: right;">
+                        <p>{{ newsItem.content }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-    <!-- Submit button in Arabic to finalize votes -->
-    <button pButton
-            label="إرسال النتائج"
-            icon="pi pi-check"
-            class="submit-button"
-            (click)="submitVoting()">
-    </button>
+
+
+
+<div class="voters" *ngIf="selectedValue === 'voting'">
+    <h3 style="text-align: center; color: #333;">فضاء التصويت على المشاريع</h3>
+
+    <!-- List of projects to vote on -->
+    <div class="projects-container">
+        <div *ngFor="let project of projects" class="project-row">
+            <!-- Voting options in a row -->
+            <button pButton style="margin-right:20px;width:140px;"
+                    label="أصوت"
+                    icon="pi pi-check"
+                    class="submit-button"
+            >
+            </button>
+            <div class="vote-options">
+                <p-radioButton
+                    name="vote{{project.id}}"
+                    value="green"
+                    [(ngModel)]="project.vote">
+                </p-radioButton>
+                <label>أوافق بشدة</label>
+
+                <p-radioButton
+                    name="vote{{project.id}}"
+                    value="orange"
+                    [(ngModel)]="project.vote">
+                </p-radioButton>
+                <label>عادي</label>
+
+                <p-radioButton
+                    name="vote{{project.id}}"
+                    value="red"
+                    [(ngModel)]="project.vote">
+                </p-radioButton>
+                <label>لا أوافق</label>
+            </div>
+
+            <!-- Project title, description, and download link -->
+            <div class="project-details">
+                <h4>{{ project.title }}</h4>
+                <p>{{ project.description }}</p>
+                <a [href]="'/assets/pdfs/' + project.id + '.pdf'" target="_blank" download>
+                    للحصول على المنشور اضغط هنا
+                </a>
+            </div>
+
+            <!-- Individual Submit button -->
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div *ngIf="selectedValue==='Proposal'" >
+    proposol
 </div>

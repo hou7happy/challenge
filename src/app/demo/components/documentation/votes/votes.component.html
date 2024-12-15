@@ -1,0 +1,49 @@
+<!--<div class="voters" >-->
+<!--    <h3 style="text-align: center; color: #333;">تصويت على المشاريع</h3>-->
+
+<!--    &lt;!&ndash; List of projects to vote on &ndash;&gt;-->
+<!--    <div class="projects-container">-->
+<!--        <div *ngFor="let project of projects" class="project-row">-->
+<!--            &lt;!&ndash; Project title aligned to the right &ndash;&gt;-->
+
+
+<!--            &lt;!&ndash; Vote options aligned to the left &ndash;&gt;-->
+<!--            <div class="vote-options">-->
+<!--                &lt;!&ndash; Green: "أوافق بشدة" &ndash;&gt;-->
+<!--                <p-radioButton-->
+<!--                    name="vote{{project.id}}"-->
+<!--                    value="green"-->
+<!--                    [(ngModel)]="project.vote">-->
+<!--                </p-radioButton>-->
+<!--                <label>أوافق بشدة</label>-->
+
+<!--                &lt;!&ndash; Orange: "عادي" &ndash;&gt;-->
+<!--                <p-radioButton-->
+<!--                    name="vote{{project.id}}"-->
+<!--                    value="orange"-->
+<!--                    [(ngModel)]="project.vote">-->
+<!--                </p-radioButton>-->
+<!--                <label>عادي</label>-->
+
+<!--                &lt;!&ndash; Red: "لا أوافق" &ndash;&gt;-->
+<!--                <p-radioButton-->
+<!--                    name="vote{{project.id}}"-->
+<!--                    value="red"-->
+<!--                    [(ngModel)]="project.vote">-->
+<!--                </p-radioButton>-->
+<!--                <label>لا أوافق</label>-->
+<!--                <div class="project-title">-->
+<!--                {{ project.title }}-->
+<!--            </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Submit button in Arabic to finalize votes &ndash;&gt;-->
+<!--    <button pButton-->
+<!--            label="إرسال النتائج"-->
+<!--            icon="pi pi-check"-->
+<!--            class="submit-button"-->
+<!--            (click)="submitVoting()">-->
+<!--    </button>-->
+<!--</div>-->

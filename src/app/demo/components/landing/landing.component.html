@@ -27,57 +27,37 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
             <div>
                 <label htmlFor="fullname" style="font-weight: bold;">الاسم واللقب</label>
-                <input
-                    pInputText
-                    id="fullname"
-                    type="text"
-                    placeholder="اكتب الاسم واللقب هنا"
-                    [(ngModel)]="formData.fullname"
-                    (input)="updateProgress()"
+                <input pInputText id="fullname" type="text" placeholder="اكتب الاسم واللقب هنا"
+                       style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 5px; text-align: right;"
+                       (input)="updateProgress()"
                 />
             </div>
             <div>
                 <label htmlFor="birthdate" style="font-weight: bold;">تاريخ الولادة</label>
-                <input
-                    pInputText
-                    id="birthdate"
-                    type="text"
-                    placeholder="mm/dd/yyyy"
-                    [(ngModel)]="formData.birthdate"
-                    (input)="updateProgress()"
+                <input pInputText id="birthdate" type="text" placeholder="mm/dd/yyyy"
+                       style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 5px; text-align: right;"
+                       (input)="updateProgress()"
                 />
             </div>
             <div>
                 <label htmlFor="cin" style="font-weight: bold;">رقم بطاقة التعريف الوطنية</label>
-                <input
-                    pInputText
-                    id="cin"
-                    type="text"
-                    placeholder="رقم بطاقة التعريف الوطنية"
-                    [(ngModel)]="formData.cin"
-                    (input)="updateProgress()"
+                <input pInputText id="cin" type="text" placeholder="رقم بطاقة التعريف الوطنية"
+                       style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 5px; text-align: right;"
+                       (input)="updateProgress()"
                 />
             </div>
             <div>
                 <label htmlFor="phone" style="font-weight: bold;">رقم الهاتف</label>
-                <input
-                    pInputText
-                    id="phone"
-                    type="text"
-                    placeholder="أدخل رقم هاتفك هنا"
-                    [(ngModel)]="formData.phone"
-                    (input)="updateProgress()"
+                <input pInputText id="phone" type="text" placeholder="أدخل رقم هاتفك هنا"
+                       style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 5px; text-align: right;"
+                       (input)="updateProgress()"
                 />
             </div>
             <div style="grid-column: span 2;">
                 <label htmlFor="email" style="font-weight: bold;">بريد إلكتروني</label>
-                <input
-                    pInputText
-                    id="email"
-                    type="text"
-                    placeholder="اكتب بريدك الإلكتروني هنا"
-                    [(ngModel)]="formData.email"
-                    (input)="updateProgress()"
+                <input pInputText id="email" type="text" placeholder="اكتب بريدك الإلكتروني هنا"
+                       style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 5px; text-align: right;"
+                       (input)="updateProgress()"
                 />
             </div>
         </div>
@@ -87,44 +67,51 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
             <div>
                 <label htmlFor="state" style="font-weight: bold;">الولاية</label>
-                <p-dropdown
-                    [options]="stateItems"
-                    optionLabel="label"
-                    [(ngModel)]="formData.state"
-                ></p-dropdown>
-            </div>
+                <p-dropdown [options]="[
+                    { label: 'أريانة', value: 'Ariana' },
+                    { label: 'باجة', value: 'Beja' },
+                    { label: 'بن عروس', value: 'Ben Arous' },
+                    { label: 'بنزرت', value: 'Bizerte' },
+                    { label: 'قابس', value: 'Gabes' },
+                    { label: 'قفصة', value: 'Gafsa' },
+                    { label: 'جندوبة', value: 'Jendouba' },
+                    { label: 'القيروان', value: 'Kairouan' },
+                    { label: 'القصرين', value: 'Kasserine' },
+                    { label: 'قبلي', value: 'Kebili' },
+                    { label: 'الكاف', value: 'Kef' },
+                    { label: 'المهدية', value: 'Mahdia' },
+                    { label: 'المنستير', value: 'Monastir' },
+                    { label: 'مدنين', value: 'Medenine' },
+                    { label: 'منوبة', value: 'Manouba' },
+                    { label: 'نابل', value: 'Nabeul' },
+                    { label: 'صفاقس', value: 'Sfax' },
+                    { label: 'سيدي بوزيد', value: 'Sidi Bouzid' },
+                    { label: 'سليانة', value: 'Siliana' },
+                    { label: 'سوسة', value: 'Sousse' },
+                    { label: 'تطاوين', value: 'Tataouine' },
+                    { label: 'توزر', value: 'Tozeur' },
+                    { label: 'تونس ', value: 'Tunis ' },
+                    { label: 'زغوان', value: 'Zaghouan' }
+                ]" optionLabel="label" [(ngModel)]="selectedState"></p-dropdown>            </div>
             <div>
                 <label htmlFor="municipality" style="font-weight: bold;">البلدية</label>
-                <p-dropdown
-                    [options]="municipalityItems"
-                    optionLabel="name"
-                    [(ngModel)]="formData.municipality"
-                    (onChange)="updateProgress()"
-                ></p-dropdown>
+                <p-dropdown [options]="municipalityItems" optionLabel="name" [(ngModel)]="selectedMunicipality" (onChange)="updateProgress()"></p-dropdown>
             </div>
+
             <div style="grid-column: span 2;">
                 <label htmlFor="summary" style="font-weight: bold;">ملخص المقترح أو المشروع</label>
-                <textarea
-                    pInputTextarea
-                    id="summary"
-                    rows="4"
-                    placeholder="اكتب ملخص المقترح أو المشروع هنا"
-                    [(ngModel)]="formData.summary"
-                    (input)="updateProgress()"
-                ></textarea>
+                <textarea pInputTextarea id="summary" rows="4" placeholder="اكتب ملخص المقترح أو المشروع هنا"
+                          style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 5px; text-align: right;"
+                          (input)="updateProgress()"></textarea>
             </div>
         </div>
 
         <!-- Section: Actions -->
         <div style="text-align: center; margin-top: 2rem;">
-            <button
-                (click)="submit()"
-                pButton
-                label="إرسال المقترح أو المشروع"
-                style="padding: 0.75rem 1.5rem; font-size: 1rem; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;"
-            ></button>
+            <button pButton label="إرسال المقترح أو المشروع" style="padding: 0.75rem 1.5rem; font-size: 1rem; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;"></button>
         </div>
 
         <p style="margin: 0.5rem 0; font-size: 1rem;">يجب عليك إكمال النموذج لإرسال مقترح أو مشروع إلى بلديتك</p>
+
     </div>
 </div>

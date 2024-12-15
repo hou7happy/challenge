@@ -69,3 +69,70 @@
 .submit-button {
     margin-top: 1rem;
 }
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adds space between rows */
+}
+
+.project-row {
+    display: flex;
+    //align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-title {
+    flex: 1;
+    text-align: right; /* Align title to the right for Arabic */
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-left: 1rem; /* Adds spacing between title and options */
+}
+
+.vote-options {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Adds space between options */
+}
+
+.vote-options label {
+    margin: 0 0.5rem; /* Adjust spacing between labels and radio buttons */
+}
+
+.submit-button {
+    margin-top: 1.5rem;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin-inline: auto; /* Center the button horizontally */
+    background-color: #4caf50;
+    color: white;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+.project-details {
+    text-align: right;
+    width:100%;
+    margin-bottom: 10px;
+    margin-right:80px;
+    margin-left:80px;
+}
+.container {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.p-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}

@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { RatingModule } from 'primeng/rating';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
@@ -30,6 +30,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         FormsModule,
         TableModule,
         DropdownModule,
+         FormsModule,
+        ReactiveFormsModule,
         ButtonModule,
         InputTextareaModule,
         ToastModule

@@ -71,15 +71,19 @@ export class LayoutService {
 
     onMenuToggle() {
         if (this.isOverlay()) {
-            this.state.overlayMenuActive = !this.state.overlayMenuActive;
+            // this.state.overlayMenuActive = !this.state.overlayMenuActive;
             if (this.state.overlayMenuActive) {
                 this.overlayOpen.next(null);
             }
+            this.state.overlayMenuActive=false;
+            this.overlayOpen.next(null);
         }
+        this.state.overlayMenuActive=false;
+            // this.overlayOpen.next(null);
 
         if (this.isDesktop()) {
-            this.state.staticMenuDesktopInactive =
-                !this.state.staticMenuDesktopInactive;
+            this.state.staticMenuDesktopInactive =true;
+                // !this.state.staticMenuDesktopInactive;
         } else {
             this.state.staticMenuMobileActive =
                 !this.state.staticMenuMobileActive;

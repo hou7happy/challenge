@@ -1,12 +1,12 @@
 <!-- شريط علوي بسيط يطابق أسلوب اقتراح/تصويت لفكرة -->
-<div class="topbar">
-    <button pButton label="اقتراح فكرة" styleClass="p-button-outlined"></button>
-    <button pButton label="التصويت على فكرة" class="ml-2"></button>
-</div>
+<!--<div class="topbar">-->
+<!--    <button pButton label="اقتراح فكرة" styleClass="p-button-outlined"></button>-->
+<!--    <button pButton label="التصويت على فكرة" class="ml-2"></button>-->
+<!--</div>-->
 
 <div class="col-12 mt-3" dir="rtl"> <!-- Optional: dir="rtl" for right-to-left -->
     <div class="card">
-        <h5>قائمة المشاريع (توسيع الصفوف + التصفية حسب المنطقة)</h5>
+        <h5>قائمة المشاريع</h5>
 
         <!-- Toast (اختياري) -->
         <p-toast></p-toast>
@@ -90,21 +90,33 @@
                             </ul>
 
                             <!-- إضافة تعليق جديد -->
-                            <div class="flex align-items-center mt-2">
-                                <p-inputTextarea
-                                    [(ngModel)]="newCommentText"
-                                    placeholder="إضافة تعليق"
-                                    rows="2"
-                                    cols="40"
-                                ></p-inputTextarea>
-                                <button
-                                    pButton
-                                    label="إرسال"
-                                    icon="pi pi-send"
-                                    class="ml-2"
-                                    (click)="addComment(project, newCommentText); newCommentText = '';"
-                                ></button>
-                            </div>
+                            <!-- إضافة تعليق جديد -->
+
+
+    <!-- إضافة تعليق جديد -->
+<div class="flex align-items-center mt-3" style="gap:40px;text-align: right;direction: rtl">
+    <!-- Editable Div for Adding Comments -->
+    <div
+        contenteditable="true"
+        class="editable-div"
+
+        [innerText]="newCommentText"
+        (input)="newCommentText = $event.target.innerText"
+        [attr.data-placeholder]="'إضافة تعليق'"
+        style="border: 1px solid #ccc; padding: 8px; min-height: 40px; min-width: 300px; border-radius: 4px; flex-grow: 1;"
+    ></div>
+    <!-- Send Button -->
+    <button
+        pButton
+        label="إرسال"
+        icon="pi pi-send"
+        class="ml-2"
+        (click)="addComment(project, newCommentText);"
+        style="flex-shrink: 0;"
+    ></button>
+</div>
+
+
                         </div>
                     </td>
                 </tr>

@@ -20,7 +20,7 @@ interface Project {
 
 })
 export class TabledemoComponent implements OnInit {
-    constructor() {
+    constructor(private messageService: MessageService) {
     }
     // The array of all projects (mock data).
     projects: Project[] = [];
@@ -33,13 +33,13 @@ export class TabledemoComponent implements OnInit {
 
     // Region filter
     regions = [
-        { label: 'Toutes les régions', value: null },
-        { label: 'Tunis', value: 'Tunis' },
-        { label: 'Sfax', value: 'Sfax' },
-        { label: 'Sousse', value: 'Sousse' },
-        { label: 'Nabeul', value: 'Nabeul' },
+        { label: 'كل الولايات', value: null },
+        { label: 'تونس', value: 'تونس' },
+        { label: 'صفاقس', value: 'صفاقس' },
+        { label: 'سوسة', value: 'سوسة' },
+        { label: 'نابل', value: 'نابل' },
     ];
-    selectedRegion: string | null = null;
+    selectedRegion: any | null = null;
 
     // For new comments in the row expansion
     newCommentText: string = ''; // <-- ADDED
@@ -93,6 +93,19 @@ export class TabledemoComponent implements OnInit {
             },
         ];
     }
+addComment(project: Project, newComment: string) {
+    if (!newComment.trim()) {
+        return; // Do nothing for empty input
+    }
+    project.comments = project.comments || [];
+    project.comments.push(newComment.trim());
+
+    // Optional: Show a toast notification for success
+    this.messageService.add({ severity: 'success', summary: 'تمت الإضافة', detail: 'تم إضافة التعليق بنجاح!' });
+
+    // Clear the input
+    this.newCommentText = '';
+}
 
     // Expand or collapse all rows
     expandAll() {
@@ -111,16 +124,12 @@ export class TabledemoComponent implements OnInit {
 
     // Region filter
     get filteredProjects(): Project[] {
-        if (!this.selectedRegion) {
+        if (!this.selectedRegion?.value) {
             return this.projects;
         }
-        return this.projects.filter(p => p.region === this.selectedRegion);
+        return this.projects.filter(p => p.region === this.selectedRegion.value);
     }
 
     // Handle adding a new comment
-    addComment(project: Project, newComment: string) {
-        if (!newComment.trim()) return;
-        project.comments = project.comments || [];
-        project.comments.push(newComment.trim());
-    }
+
 }
