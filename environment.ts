@@ -9,3 +9,9 @@ export const development={
 export function getToken(){
     return localStorage.getItem('token');
 }
+export function getUserId(){
+    return localStorage.getItem('user');
+}
+export function setUser(user){
+    localStorage.setItem('user',user);
+}

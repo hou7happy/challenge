@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import {getUserId} from "../../../../../environment";
 
 @Component({
     selector: 'app-landing',
@@ -39,15 +40,28 @@ export class LandingComponent {
         { name: 'بلدية 2', code: 'M2' }
     ];
 
-    selectedState: any;
-    selectedMunicipality: any;
+    selectedState: any = null;
+    selectedMunicipality: any = null;
 
     progressValue: number = 0;
     totalFields: number = 8; // 5 text fields + 2 dropdowns + 1 textarea
     completedFields: number = 0;
 
+    // Form data
+    formData = {
+        fullname: '', // string
+        birthdate: '', // string (formatted as mm/dd/yyyy)
+        cin: '', // string
+        phone: '', // string
+        email: '', // string
+        state: null, // { label: string, value: string }
+        municipality: null, // { name: string }
+        summary: '' // string
+    };
+
     constructor(public layoutService: LayoutService, public router: Router) {}
 
+    // The updateProgress function remains untouched
     updateProgress(): void {
         this.completedFields = 0;
 
@@ -73,5 +87,21 @@ export class LandingComponent {
             Math.round((this.completedFields / this.totalFields) * 100),
             100
         );
+    }
+
+    // Submit the form
+    submit(): void {
+        let userId = getUserId()
+        const data = {
+            // Using fullname as title
+            description: this.formData.summary, // Using summary as description
+            userId :userId
+
+        };
+
+        console.log('Submitting:', data);
+        // Here you can make the API call
+        // Example: this.http.post('/api/propositions', data).subscribe(...)
+        alert('تم إرسال المقترح بنجاح');
     }
 }

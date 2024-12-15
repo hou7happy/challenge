@@ -13,13 +13,11 @@ export class AuthService {
 
 
     signup(data) {
-        let token = getToken();
 
-        if (token && typeof token === 'string') {
-            let headers = { 'Authorization': 'Token ' + token }
-            return this.http.post<any>(development.apiBaseUrl + ':' + development.apiPort + '/auth/signup/', data,{ headers: headers });
-        } else {
-            return of(new Error('Token not found'));
-        }
+            return this.http.post<any>(development.apiBaseUrl + ':' + development.apiPort + '/auth/signup/', data);
+
+    }
+    login(password,cin){
+        return this.http.post<any>(development.apiBaseUrl + ':' + development.apiPort + '/auth/login/', {password:password,cin:cin});
     }
 }
