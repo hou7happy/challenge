@@ -45,39 +45,50 @@ export class TabledemoComponent implements OnInit {
     newCommentText: string = ''; // <-- ADDED
 
     ngOnInit(): void {
-        // Mock some projects. (Replace with real API calls.)
+        // Mock Arabic projects for the Tunisian government
         this.projects = [
             {
                 id: 1,
-                name: 'Project 1',
-                title: 'Solar Panels Installation',
-                status: 'In Progress',
-                description: 'Installing solar panels for local community center.',
-                start_date: new Date('2024-01-10'),
-                end_date: new Date('2024-05-20'),
-                region: 'Tunis',
+                name: 'مشروع ١',
+                title: 'توسعة شبكة المياه الجوفية',
+                status: 'قيد الإنجاز',
+                description: 'العمل على حفر آبار جديدة وصيانة شبكة المياه الجوفية في مناطق داخلية.',
+                start_date: new Date('2025-01-10'),
+                end_date: new Date('2025-06-20'),
+                region: 'تونس',
                 comments: []
             },
             {
                 id: 2,
-                name: 'Project 2',
-                title: 'Renovation of Youth Center',
-                status: 'Pending',
-                description: 'Renovating the main hall, painting, and re-roofing.',
-                start_date: new Date('2024-03-01'),
-                end_date: new Date('2024-09-15'),
-                region: 'Sfax',
+                name: 'مشروع ٢',
+                title: 'إعادة تأهيل الطرق الريفية',
+                status: 'مخطط',
+                description: 'تهيئة الطرق في المناطق الريفية لتسهيل التنقل وربطها بالمحاور الرئيسية.',
+                start_date: new Date('2025-03-15'),
+                end_date: new Date('2025-09-30'),
+                region: 'سوسة',
                 comments: []
             },
             {
                 id: 3,
-                name: 'Project 3',
-                title: 'Clean Beach Campaign',
-                status: 'Completed',
-                description: 'Organizing weekly beach cleanups in Sousse.',
-                start_date: new Date('2023-09-01'),
-                end_date: new Date('2023-12-01'),
-                region: 'Sousse',
+                name: 'مشروع ٣',
+                title: 'تطوير مستشفى الأطفال',
+                status: 'قيد الإنجاز',
+                description: 'إضافة أجنحة جديدة وتحديث الأجهزة الطبية في مستشفى الأطفال بولاية صفاقس.',
+                start_date: new Date('2025-04-01'),
+                end_date: new Date('2025-11-15'),
+                region: 'صفاقس',
+                comments: []
+            },
+            {
+                id: 4,
+                name: 'مشروع ٤',
+                title: 'إطلاق منصة رقمية للخدمات الإدارية',
+                status: 'مكتمل',
+                description: 'منصة إلكترونية لتسهيل المعاملات الحكومية وتبسيط الإجراءات للمواطنين.',
+                start_date: new Date('2024-11-01'),
+                end_date: new Date('2025-02-01'),
+                region: 'نابل',
                 comments: []
             },
         ];
