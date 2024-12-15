@@ -9,6 +9,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
             {
                 path: 'dashboard', component: AppLayoutComponent,
                 children: [
+                    {path: 'projects', loadChildren: () => import('./demo/components/uikit/table/tabledemo.module').then(m => m.TabledemoModule)},
                   //  { path: '', loadChildren: () => import('./demo/components/auth/login/login-routing.module').then(m => m.LoginRoutingModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },

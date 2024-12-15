@@ -1,138 +1,115 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Customer, Representative } from 'src/app/demo/api/customer';
-import { CustomerService } from 'src/app/demo/service/customer.service';
-import { Product } from 'src/app/demo/api/product';
-import { ProductService } from 'src/app/demo/service/product.service';
-import { Table } from 'primeng/table';
-import { MessageService, ConfirmationService } from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
+import {MessageService} from "primeng/api";
 
-interface expandedRows {
-    [key: string]: boolean;
+interface Project {
+    id: number;
+    name: string | null;
+    title: string | null;
+    status: string | null;
+    description: string | null;
+    start_date: Date | null;
+    end_date: Date | null;
+    region?: string;       // region property
+    comments?: string[];   // comments array
 }
 
 @Component({
+
     templateUrl: './tabledemo.component.html',
-    providers: [MessageService, ConfirmationService]
+    providers:[MessageService]
+
 })
-export class TableDemoComponent implements OnInit {
+export class TabledemoComponent implements OnInit {
+    constructor() {
+    }
+    // The array of all projects (mock data).
+    projects: Project[] = [];
 
-    customers1: Customer[] = [];
+    // For row expansion: track which rows are expanded
+    expandedRows: { [s: string]: boolean } = {};
 
-    customers2: Customer[] = [];
-
-    customers3: Customer[] = [];
-
-    selectedCustomers1: Customer[] = [];
-
-    selectedCustomer: Customer = {};
-
-    representatives: Representative[] = [];
-
-    statuses: any[] = [];
-
-    products: Product[] = [];
-
-    rowGroupMetadata: any;
-
-    expandedRows: expandedRows = {};
-
-    activityValues: number[] = [0, 100];
-
+    // A boolean to track expand/collapse all
     isExpanded: boolean = false;
 
-    idFrozen: boolean = false;
+    // Region filter
+    regions = [
+        { label: 'Toutes les régions', value: null },
+        { label: 'Tunis', value: 'Tunis' },
+        { label: 'Sfax', value: 'Sfax' },
+        { label: 'Sousse', value: 'Sousse' },
+        { label: 'Nabeul', value: 'Nabeul' },
+    ];
+    selectedRegion: string | null = null;
 
-    loading: boolean = true;
+    // For new comments in the row expansion
+    newCommentText: string = ''; // <-- ADDED
 
-    @ViewChild('filter') filter!: ElementRef;
-
-    constructor(private customerService: CustomerService, private productService: ProductService) { }
-
-    ngOnInit() {
-        this.customerService.getCustomersLarge().then(customers => {
-            this.customers1 = customers;
-            this.loading = false;
-
-            // @ts-ignore
-            this.customers1.forEach(customer => customer.date = new Date(customer.date));
-        });
-        this.customerService.getCustomersMedium().then(customers => this.customers2 = customers);
-        this.customerService.getCustomersLarge().then(customers => this.customers3 = customers);
-        this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
-
-        this.representatives = [
-            { name: 'Amy Elsner', image: 'amyelsner.png' },
-            { name: 'Anna Fali', image: 'annafali.png' },
-            { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-            { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-            { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-            { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-            { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-            { name: 'Onyama Limba', image: 'onyamalimba.png' },
-            { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-            { name: 'XuXue Feng', image: 'xuxuefeng.png' }
+    ngOnInit(): void {
+        // Mock some projects. (Replace with real API calls.)
+        this.projects = [
+            {
+                id: 1,
+                name: 'Project 1',
+                title: 'Solar Panels Installation',
+                status: 'In Progress',
+                description: 'Installing solar panels for local community center.',
+                start_date: new Date('2024-01-10'),
+                end_date: new Date('2024-05-20'),
+                region: 'Tunis',
+                comments: []
+            },
+            {
+                id: 2,
+                name: 'Project 2',
+                title: 'Renovation of Youth Center',
+                status: 'Pending',
+                description: 'Renovating the main hall, painting, and re-roofing.',
+                start_date: new Date('2024-03-01'),
+                end_date: new Date('2024-09-15'),
+                region: 'Sfax',
+                comments: []
+            },
+            {
+                id: 3,
+                name: 'Project 3',
+                title: 'Clean Beach Campaign',
+                status: 'Completed',
+                description: 'Organizing weekly beach cleanups in Sousse.',
+                start_date: new Date('2023-09-01'),
+                end_date: new Date('2023-12-01'),
+                region: 'Sousse',
+                comments: []
+            },
         ];
-
-        this.statuses = [
-            { label: 'Unqualified', value: 'unqualified' },
-            { label: 'Qualified', value: 'qualified' },
-            { label: 'New', value: 'new' },
-            { label: 'Negotiation', value: 'negotiation' },
-            { label: 'Renewal', value: 'renewal' },
-            { label: 'Proposal', value: 'proposal' }
-        ];
     }
 
-    onSort() {
-        this.updateRowGroupMetaData();
-    }
-
-    updateRowGroupMetaData() {
-        this.rowGroupMetadata = {};
-
-        if (this.customers3) {
-            for (let i = 0; i < this.customers3.length; i++) {
-                const rowData = this.customers3[i];
-                const representativeName = rowData?.representative?.name || '';
-
-                if (i === 0) {
-                    this.rowGroupMetadata[representativeName] = { index: 0, size: 1 };
-                }
-                else {
-                    const previousRowData = this.customers3[i - 1];
-                    const previousRowGroup = previousRowData?.representative?.name;
-                    if (representativeName === previousRowGroup) {
-                        this.rowGroupMetadata[representativeName].size++;
-                    }
-                    else {
-                        this.rowGroupMetadata[representativeName] = { index: i, size: 1 };
-                    }
-                }
-            }
-        }
-    }
-
+    // Expand or collapse all rows
     expandAll() {
         if (!this.isExpanded) {
-            this.products.forEach(product => product && product.name ? this.expandedRows[product.name] = true : '');
-
+            // Expand all
+            this.projects.forEach(p => {
+                // Fallback to p.name or p.id as the dataKey
+                this.expandedRows[p.name || ''] = true;
+            });
         } else {
+            // Collapse all
             this.expandedRows = {};
         }
         this.isExpanded = !this.isExpanded;
     }
 
-    formatCurrency(value: number) {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    // Region filter
+    get filteredProjects(): Project[] {
+        if (!this.selectedRegion) {
+            return this.projects;
+        }
+        return this.projects.filter(p => p.region === this.selectedRegion);
     }
 
-    onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    // Handle adding a new comment
+    addComment(project: Project, newComment: string) {
+        if (!newComment.trim()) return;
+        project.comments = project.comments || [];
+        project.comments.push(newComment.trim());
     }
-
-    clear(table: Table) {
-        table.clear();
-        this.filter.nativeElement.value = '';
-    }
-    
 }
