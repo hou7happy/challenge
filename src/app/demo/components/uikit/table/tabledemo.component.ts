@@ -13,6 +13,8 @@ interface Project {
     comments?: string[];   // comments array
 }
 
+
+
 @Component({
 
     templateUrl: './tabledemo.component.html',
@@ -131,5 +133,13 @@ addComment(project: Project, newComment: string) {
     }
 
     // Handle adding a new comment
+    shareProject(project: Project) {
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(` إليك مشروع: ${project.title} - ${project.description}`);
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`;
+
+        // Open the Facebook share link in a new window
+        window.open(facebookUrl, '_blank');
+    }
 
 }
