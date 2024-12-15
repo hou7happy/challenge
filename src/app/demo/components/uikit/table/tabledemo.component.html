@@ -1,59 +1,58 @@
-<!-- A simple top bar to match style of "Proposer une idée" / "Voter pour idée" pages -->
+<!-- شريط علوي بسيط يطابق أسلوب اقتراح/تصويت لفكرة -->
 <div class="topbar">
-    <button pButton label="Proposer une idée" styleClass="p-button-outlined"></button>
-    <button pButton label="Voter pour une idée" class="ml-2"></button>
+    <button pButton label="اقتراح فكرة" styleClass="p-button-outlined"></button>
+    <button pButton label="التصويت على فكرة" class="ml-2"></button>
 </div>
 
-<div class="col-12 mt-3">
+<div class="col-12 mt-3" dir="rtl"> <!-- Optional: dir="rtl" for right-to-left -->
     <div class="card">
-        <h5>Liste des Projets (Row Expand + Filter by Region)</h5>
+        <h5>قائمة المشاريع (توسيع الصفوف + التصفية حسب المنطقة)</h5>
 
-        <!-- Toast for messages (optional) -->
+        <!-- Toast (اختياري) -->
         <p-toast></p-toast>
 
-        <!-- Dropdown filter for region -->
+        <!-- تصفية حسب المنطقة -->
         <div class="flex align-items-center mb-2">
-            <label class="mr-2">Filtrer par région:</label>
+            <label class="mr-2">التصفية حسب المنطقة:</label>
             <p-dropdown
                 [options]="regions"
                 [(ngModel)]="selectedRegion"
-                placeholder="Toutes les régions"
+                placeholder="جميع المناطق"
                 optionLabel="label"
                 class="p-column-filter"
             ></p-dropdown>
         </div>
 
-        <!-- Table with row expansion -->
+        <!-- جدول مع توسعة صفوف -->
         <p-table
             [value]="filteredProjects"
             dataKey="name"
             [expandedRowKeys]="expandedRows"
             responsiveLayout="scroll"
         >
-            <!-- Table caption with expand/collapse button -->
             <ng-template pTemplate="caption">
                 <button
                     pButton
                     icon="pi pi-fw {{ isExpanded ? 'pi-minus' : 'pi-plus' }}"
-                    label="{{ isExpanded ? 'Collapse All' : 'Expand All' }}"
+                    label="{{ isExpanded ? 'إغلاق الكل' : 'توسيع الكل' }}"
                     (click)="expandAll()"
                 ></button>
             </ng-template>
 
-            <!-- Table header -->
+            <!-- الرؤوس -->
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width: 3rem"></th>
-                    <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-                    <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
-                    <th pSortableColumn="region">Region <p-sortIcon field="region"></p-sortIcon></th>
-                    <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
-                    <th pSortableColumn="start_date">Start Date <p-sortIcon field="start_date"></p-sortIcon></th>
-                    <th pSortableColumn="end_date">End Date <p-sortIcon field="end_date"></p-sortIcon></th>
+                    <th pSortableColumn="name">المعرف الوحيد <p-sortIcon field="name"></p-sortIcon></th>
+                    <th pSortableColumn="title">عنوان المشروع <p-sortIcon field="title"></p-sortIcon></th>
+                    <th pSortableColumn="region">المنطقة <p-sortIcon field="region"></p-sortIcon></th>
+                    <th pSortableColumn="status">الحالة <p-sortIcon field="status"></p-sortIcon></th>
+                    <th pSortableColumn="start_date">تاريخ البدء <p-sortIcon field="start_date"></p-sortIcon></th>
+                    <th pSortableColumn="end_date">تاريخ الانتهاء <p-sortIcon field="end_date"></p-sortIcon></th>
                 </tr>
             </ng-template>
 
-            <!-- Table body -->
+            <!-- الجسم -->
             <ng-template pTemplate="body" let-project let-expanded="expanded">
                 <tr>
                     <td>
@@ -75,33 +74,32 @@
                 </tr>
             </ng-template>
 
-            <!-- Row expansion template (comments + description) -->
+            <!-- توسعة الصف (تعليقات + وصف) -->
             <ng-template pTemplate="rowexpansion" let-project>
                 <tr>
                     <td colspan="7">
                         <div class="p-3">
-                            <h6>Description du projet</h6>
+                            <h6>وصف المشروع</h6>
                             <p>{{ project.description }}</p>
 
-                            <h6 class="mt-3">Commentaires</h6>
-                            <!-- Display existing comments -->
+                            <h6 class="mt-3">التعليقات</h6>
                             <ul style="list-style-type: none; padding: 0;">
                                 <li *ngFor="let c of project.comments">
                                     <i class="pi pi-comment mr-2"></i>{{ c }}
                                 </li>
                             </ul>
 
-                            <!-- Add new comment -->
+                            <!-- إضافة تعليق جديد -->
                             <div class="flex align-items-center mt-2">
                                 <p-inputTextarea
                                     [(ngModel)]="newCommentText"
-                                    placeholder="Ajouter un commentaire"
+                                    placeholder="إضافة تعليق"
                                     rows="2"
                                     cols="40"
                                 ></p-inputTextarea>
                                 <button
                                     pButton
-                                    label="Envoyer"
+                                    label="إرسال"
                                     icon="pi pi-send"
                                     class="ml-2"
                                     (click)="addComment(project, newCommentText); newCommentText = '';"
@@ -112,10 +110,10 @@
                 </tr>
             </ng-template>
 
-            <!-- If no projects match the filter, show empty message -->
+            <!-- في حال عدم وجود مشاريع مطابقة -->
             <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td colspan="7">Aucun projet trouvé pour cette région.</td>
+                    <td colspan="7">لم يتم العثور على أي مشروع لهذه المنطقة.</td>
                 </tr>
             </ng-template>
         </p-table>
